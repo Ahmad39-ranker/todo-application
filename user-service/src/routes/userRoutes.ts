@@ -1,5 +1,3 @@
-// user-service/src/routes/userRoutes.ts
-
 import { Router } from 'express';
 import { registerUser, loginUser } from '../controllers/userController'; // Import controller functions
 

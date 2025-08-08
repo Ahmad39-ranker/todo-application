@@ -1,5 +1,3 @@
-// todo-service/src/routes/todoRoutes.ts
-
 import { Router } from 'express';
 import { createTodo, getTodos, updateTodo, deleteTodo } from '../controllers/todoController'; // Import controller functions
 import auth from '../middleware/auth'; // Import the authentication middleware

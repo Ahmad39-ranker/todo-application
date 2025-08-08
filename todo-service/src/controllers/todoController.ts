@@ -1,5 +1,3 @@
-// todo-service/src/controllers/todoController.ts
-
 import { Request, Response } from 'express';
 import Todo, { ITodo } from '../models/Todo'; // Import the Todo model
 import { v4 as uuidv4 } from 'uuid'; // For generating UUIDs for new todos

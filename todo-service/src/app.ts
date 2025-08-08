@@ -1,5 +1,3 @@
-// todo-service/src/app.ts
-
 import express from 'express';
 import connectDB from './config/db';
 import todoRoutes from './routes/todoRoutes';

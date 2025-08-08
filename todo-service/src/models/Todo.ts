@@ -1,5 +1,3 @@
-// todo-service/src/models/Todo.ts
-
 import mongoose, { Document, Schema } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid for unique todo IDs
 

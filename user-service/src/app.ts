@@ -1,5 +1,3 @@
-// user-service/src/app.ts
-
 import express from 'express';
 import connectDB from './config/db';
 import userRoutes from './routes/userRoutes';

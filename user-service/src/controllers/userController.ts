@@ -1,5 +1,3 @@
-// user-service/src/controllers/userController.ts
-
 import { Request, Response } from 'express';
 import User, { IUser } from '../models/User'; // Import the User model
 import jwt from 'jsonwebtoken'; // For generating JWTs
