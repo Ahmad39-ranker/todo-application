@@ -1,0 +1,52 @@
+# aicichallenge/docker-compose.yml
+version: '3.8' # Specify Docker Compose file format version (warning is fine)
+
+services:
+  # MongoDB Service Definition
+  mongodb:
+    image: mongo:latest # Use the latest official MongoDB image
+    container_name: mongodb_container # Assign a readable name to the container
+    ports:
+      - "27017:27017" # Map host port 27017 to container port 27017 for external access
+    volumes:
+      - mongodb_data:/data/db # Persist MongoDB data to a named volume
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    restart: always # Ensure the container restarts if it stops
+
+  # User Service Definition
+  user-service:
+    build: ./user-service # Specify the build context for the Dockerfile
+    container_name: user_service_container # Assign a readable name
+    ports:
+      - "5000:5000" # Map host port 5000 to container port 5000
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/userdb?authSource=admin
+      JWT_SECRET: Ahmad@066 # Ensure this matches your actual secret
+    depends_on:
+      - mongodb # Ensure MongoDB starts before the user-service
+    restart: always # Always restart the container if it stops
+    # REMOVED: volumes:
+    # REMOVED:   - ./user-service:/app
+    # REMOVED:   - /app/node_modules
+
+  # Todo Service Definition
+  todo-service:
+    build: ./todo-service # Specify the build context for the Dockerfile
+    container_name: todo_service_container # Assign a readable name
+    ports:
+      - "5001:5001" # Map host port 5001 to container port 5001
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/tododb?authSource=admin
+      JWT_SECRET: Ahmad@066 # Ensure this matches your actual secret
+    depends_on:
+      - mongodb # Ensure MongoDB starts before the todo-service
+    restart: always # Always restart the container if it stops
+    # REMOVED: volumes:
+    # REMOVED:   - ./todo-service:/app
+    # REMOVED:   - /app/node_modules
+
+# Define named volumes for data persistence
+volumes:
+  mongodb_data:
